@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html5>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <style type="text/css">
+            #banner {
+                background-color: maroon;
+                text-align: center;
+                color: ghostwhite;
+                height: 250px;
+                font-size: 30px;
+                border-radius: 10px;
+            }
+            body {
+                background-color: lightslategrey;
+                color: ghostwhite;
+            }
+            table {
+                width: 100%;
+                text-align: center;
+            }
+            #tblMain td, th {
+                background-color: gainsboro;
+                border: 1px solid black;
+                color: black;
+            }
+/*            #tblMain td {
+                border: 1px solid ghostwhite;
+            }*/
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+                a:hover {
+                    text-decoration: underline;
+                }
+            #CSCEntry {
+                width: 20%;
+            }
+            #tblGoogle {
+                width: 20%;
+            }
+            #google {
+                box-shadow: 1px 1px 1px #888;
+            }
+        </style>
+        <title>James Windham - Portfolio Showcase</title>
+    </head>
+    <body ng-app="myApp" ng-controller="myCtrl">
+        <header>
+            <div id="banner">
+                <h1>James D. Windham</h1>
+                <p>Programmer/Freelancer</p>
+                <hr />
+                <table>
+                    <tr>
+                        <td><a href="#">Angular</a></td>
+                        <td><a href="http://localhost/phpmyadmin/index.php">MySQL</a></td>
+                        <td><a href="#">C#</a></td>
+                        <td><a href="#">HTML/CSS</a></td>
+                        <td><a href="data.js">Node js</a></td>
+                        <td><a href="data.json">JSON</a></td>
+                        <td><a href="./PHP/demo.php">PHP</a></td>
+                    </tr>
+                </table>
+            </div>
+            <h1>Welcome to my page!</h1>
+            <h2>
+                This is a site used to showcase my skillset and what I may be learning at the moment.<br />
+                Feel free to take a look at what I have been doing lately. Click my links above for more.
+            </h2>
+        </header>
+        <main>
+            <br />
+            <div id="visitors">
+                <h2>Visitor's Table - JSON written by Node js and displayed by Angular</h2>
+                <table id="tblMain" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone #</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="v in visitors | orderBy : datetime">
+                        <td>{{$index + 1}}</td>
+                        <td>{{v.datetime}}</td>
+                        <td>{{v.firstname | uppercase}}</td>
+                        <td>{{v.lastname | uppercase}}</td>
+                        <td>{{v.phone}}</td>
+                        <td>{{v.comment | uppercase}}</td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+            <hr />
+            <br />
+            <div id="tblCSC">
+                <h2>City, State, Country Table - array in code being updated by AngularJS</h2>
+                <h2>Enter Record Below &#128071;</h2>
+                <table id="CSCEntry">
+                    <thead>
+                        <tr>
+                            <td>Country</td>
+                            <td>State</td>
+                            <td>City</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input id="inpCountry" type="text" ng-model="country" /></td>
+                            <td><input id="inpState" type="text" ng-model="state" /></td>
+                            <td><input id="inpCity" type="text" ng-model="city" /></td>
+                            <td><button ng-click="insert()">ENTER</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="tblMain" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>City</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="r in records track by $index">
+                            <td><span class="sn">{{r.id}}</span></td>
+                            <td>{{r.city}}</td>
+                            <td>{{r.state}}</td>
+                            <td>{{r.country}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <hr />
+            <br />
+            <div id="googleMap">
+                <table id="tblGoogle">
+                    <thead>
+                        <tr>
+                            <td>Country</td>
+                            <td>State</td>
+                            <td>City</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input id="inpCountry" type="text" ng-model="country1" /></td>
+                            <td><input id="inpState" type="text" ng-model="state1" /></td>
+                            <td><input id="inpCity" type="text" ng-model="city1" /></td>
+                            <td><button ng-click="search()">SEARCH</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <iframe width="1260"
+                        id="google"
+                        height="900"
+                        style="border: 1px solid maroon; box-shadow: 1px 1px 1px #888;"
+                        loading="lazy"
+                        allowfullscreen
+                        ng-src="{{url}}">
+                </iframe>
+            </div>
+        </main>
+    </body>
+</html5>
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http, $sce) {
+        // GET request from tblVisitors JSON
+        $http({
+            method: 'GET',
+            url: 'json/data.json'
+        }).then(function successCallback(response) {
+            $scope.visitors = (response.data);
+        }, function errorCallback(response) {
+        });
+        //city, state, country table demo
+        $scope.records = [{
+            "id": "1",
+            "city": "Boulder",
+            "state": "CO",
+            "country": "USA"
+        },
+        {
+            "id": "2",
+            "city": "Denver",
+            "state": "CO",
+            "country": "USA"
+        },
+        {
+            "id": "3",
+            "city": "Chicago",
+            "state": "IL",
+            "country": "USA"
+        },
+        {
+            "id": "4",
+            "city": "Providence",
+            "state": "RI",
+            "country": "USA"
+        }]
+        //insert new record
+        $scope.insert = function () {
+            //Add the new item to the Array.
+            var record = {
+                id: $scope.records.length + 1,
+                city: $scope.city,
+                state: $scope.state,
+                country: $scope.country
+            };
+            $scope.records.push(record);
+            $scope.id = '';
+            $scope.city = '';
+            $scope.state = '';
+            $scope.country = '';
+        }
+        //change URL for google map iframe on button click
+        $scope.search = function () {
+            $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCWosGkR3s0yC-v82Oas_EkbdLmQXkfBXY&q=' + $scope.city1 + ' ' + $scope.state1 + ' ' + $scope.country1 + '');
+        }
+        //set initial URL for google map iframe
+        var init = function () {
+            $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCWosGkR3s0yC-v82Oas_EkbdLmQXkfBXY&q=Dallas,TX');
+        }
+        //on load
+        init();
+    });
+</script>

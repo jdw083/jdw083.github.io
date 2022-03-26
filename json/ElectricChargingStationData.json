@@ -1,0 +1,356 @@
+{
+  "objectIdFieldName": "ObjectId",
+  "uniqueIdField": {
+    "name": "ObjectId",
+    "isSystemMaintained": true
+  },
+  "globalIdFieldName": "",
+  "fields": [
+    {
+      "name": "Station_Name",
+      "type": "esriFieldTypeString",
+      "alias": "Station Name",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 4000,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Address",
+      "type": "esriFieldTypeString",
+      "alias": "Address",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 4000,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "City",
+      "type": "esriFieldTypeString",
+      "alias": "City",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 4000,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "State_Province",
+      "type": "esriFieldTypeString",
+      "alias": "State/Province",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 4000,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Zip_Postal_Code",
+      "type": "esriFieldTypeString",
+      "alias": "Zip/Postal Code",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 256,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Start_Date___Time",
+      "type": "esriFieldTypeString",
+      "alias": "Start Date & Time",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 256,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Start_Time_Zone",
+      "type": "esriFieldTypeString",
+      "alias": "Start Time Zone",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 4000,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "End_Date___Time",
+      "type": "esriFieldTypeString",
+      "alias": "End Date & Time",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 256,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "End_Time_Zone",
+      "type": "esriFieldTypeString",
+      "alias": "End Time Zone",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 4000,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Total_Duration__hh_mm_ss_",
+      "type": "esriFieldTypeString",
+      "alias": "Total Duration (hh:mm:ss)",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 4000,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Charging_Time__hh_mm_ss_",
+      "type": "esriFieldTypeString",
+      "alias": "Charging Time (hh:mm:ss)",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 256,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Energy__kWh_",
+      "type": "esriFieldTypeString",
+      "alias": "Energy (kWh)",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 256,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "GHG_Savings__kg_",
+      "type": "esriFieldTypeString",
+      "alias": "GHG Savings (kg)",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 256,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Gasoline_Savings__gallons_",
+      "type": "esriFieldTypeString",
+      "alias": "Gasoline Savings (gallons)",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 256,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Port_Type",
+      "type": "esriFieldTypeString",
+      "alias": "Port Type",
+      "sqlType": "sqlTypeNVarchar",
+      "length": 4000,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ObjectId",
+      "type": "esriFieldTypeOID",
+      "alias": "ObjectId",
+      "sqlType": "sqlTypeInteger",
+      "domain": null,
+      "defaultValue": null
+    }
+  ],
+  "exceededTransferLimit": true,
+  "features": [
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / JUNCTION ST1",
+        "Address": "2280 Junction Pl",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80301",
+        "Start_Date___Time": "1/1/2018 17:49",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/1/2018 19:52",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "2:03:02",
+        "Charging_Time__hh_mm_ss_": "2:02:44",
+        "Energy__kWh_": "6.504",
+        "GHG_Savings__kg_": "2.732",
+        "Gasoline_Savings__gallons_": "0.816",
+        "Port_Type": "Level 2",
+        "ObjectId": 1
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / JUNCTION ST1",
+        "Address": "2280 Junction Pl",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80301",
+        "Start_Date___Time": "1/2/2018 8:52",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/2/2018 9:16",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "0:24:34",
+        "Charging_Time__hh_mm_ss_": "0:24:19",
+        "Energy__kWh_": "2.481",
+        "GHG_Savings__kg_": "1.042",
+        "Gasoline_Savings__gallons_": "0.311",
+        "Port_Type": "Level 2",
+        "ObjectId": 2
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / JUNCTION ST1",
+        "Address": "2280 Junction Pl",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80301",
+        "Start_Date___Time": "1/2/2018 21:11",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/3/2018 6:23",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "9:12:21",
+        "Charging_Time__hh_mm_ss_": "3:40:52",
+        "Energy__kWh_": "15.046",
+        "GHG_Savings__kg_": "6.319",
+        "Gasoline_Savings__gallons_": "1.888",
+        "Port_Type": "Level 2",
+        "ObjectId": 3
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / ALPINE ST1",
+        "Address": "1275 Alpine Ave",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80304",
+        "Start_Date___Time": "1/3/2018 9:19",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/3/2018 11:14",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "1:54:51",
+        "Charging_Time__hh_mm_ss_": "1:54:29",
+        "Energy__kWh_": "6.947",
+        "GHG_Savings__kg_": "2.918",
+        "Gasoline_Savings__gallons_": "0.872",
+        "Port_Type": "Level 2",
+        "ObjectId": 4
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / BASELINE ST1",
+        "Address": "900 Baseline Rd",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80302",
+        "Start_Date___Time": "1/3/2018 14:13",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/3/2018 14:30",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "0:16:58",
+        "Charging_Time__hh_mm_ss_": "0:16:44",
+        "Energy__kWh_": "1.8",
+        "GHG_Savings__kg_": "0.756",
+        "Gasoline_Savings__gallons_": "0.226",
+        "Port_Type": "Level 2",
+        "ObjectId": 5
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / ALPINE ST1",
+        "Address": "1275 Alpine Ave",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80304",
+        "Start_Date___Time": "1/3/2018 14:37",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/3/2018 15:01",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "0:24:22",
+        "Charging_Time__hh_mm_ss_": "0:23:57",
+        "Energy__kWh_": "2.48",
+        "GHG_Savings__kg_": "1.042",
+        "Gasoline_Savings__gallons_": "0.311",
+        "Port_Type": "Level 2",
+        "ObjectId": 6
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / FACILITIES ST1",
+        "Address": "1745 14th street",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80302",
+        "Start_Date___Time": "1/4/2018 9:29",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/8/2018 8:35",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "95:06:31",
+        "Charging_Time__hh_mm_ss_": "2:14:10",
+        "Energy__kWh_": "4.443",
+        "GHG_Savings__kg_": "1.866",
+        "Gasoline_Savings__gallons_": "0.558",
+        "Port_Type": "Level 2",
+        "ObjectId": 7
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / BASELINE ST1",
+        "Address": "900 Baseline Rd",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80302",
+        "Start_Date___Time": "1/4/2018 12:21",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/4/2018 13:46",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "1:24:35",
+        "Charging_Time__hh_mm_ss_": "1:24:24",
+        "Energy__kWh_": "8.165",
+        "GHG_Savings__kg_": "3.429",
+        "Gasoline_Savings__gallons_": "1.025",
+        "Port_Type": "Level 2",
+        "ObjectId": 8
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / FACILITIES ST1",
+        "Address": "1745 14th street",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80302",
+        "Start_Date___Time": "1/4/2018 13:36",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/4/2018 17:55",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "4:19:46",
+        "Charging_Time__hh_mm_ss_": "3:53:36",
+        "Energy__kWh_": "14.109",
+        "GHG_Savings__kg_": "5.926",
+        "Gasoline_Savings__gallons_": "1.771",
+        "Port_Type": "Level 2",
+        "ObjectId": 9
+      }
+    },
+    {
+      "attributes": {
+        "Station_Name": "BOULDER / BASELINE ST1",
+        "Address": "900 Baseline Rd",
+        "City": "Boulder",
+        "State_Province": "Colorado",
+        "Zip_Postal_Code": "80302",
+        "Start_Date___Time": "1/4/2018 16:01",
+        "Start_Time_Zone": "MDT",
+        "End_Date___Time": "1/4/2018 16:48",
+        "End_Time_Zone": "MDT",
+        "Total_Duration__hh_mm_ss_": "0:47:22",
+        "Charging_Time__hh_mm_ss_": "0:47:03",
+        "Energy__kWh_": "2.811",
+        "GHG_Savings__kg_": "1.181",
+        "Gasoline_Savings__gallons_": "0.353",
+        "Port_Type": "Level 2",
+        "ObjectId": 10
+      }
+    }
+  ]
+}

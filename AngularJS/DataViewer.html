@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style type="text/css">
+    #tblMain {
+        width: 25%;  
+        text-align: center;
+    }
+    #tblMain tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    th {
+        background-color: silver;
+    }
+</style>
+<html lang="en-US">
+<body>
+    <h2>Enter Record Below &#128071;</h2>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <table>
+            <thead>
+                <tr>
+                    <td>Country</td>
+                    <td>State</td>
+                    <td>City</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input id="inpCountry" type="text" ng-model="country" /></td>
+                    <td><input id="inpState" type="text" ng-model="state" /></td>
+                    <td><input id="inpCity" type="text" ng-model="city" /></td>
+                    <td><button ng-click="insert()">ENTER</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--<br />
+        <p><b>Searching for:</b> {{city + " " + state + " " + country}}</p>
+        <br />-->
+        <br />
+        <table id="tblMain" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="r in records track by $index">
+                    <td><span class="sn">{{r.id}}</span>.</td>
+                    <td>{{r.city}}</td>
+                    <td>{{r.state}}</td>
+                    <td>{{r.country}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', ['$scope', function ($scope) {
+        $scope.records = [{
+                "id": "1",
+                "city": "Boulder",
+                "state": "CO",
+                "country": "USA"
+            },
+            {
+                "id": "2",
+                "city": "Denver",
+                "state": "CO",
+                "country": "USA"
+            },
+            {
+                "id": "3",
+                "city": "Chicago",
+                "state": "IL",
+                "country": "USA"
+            },
+            {
+                "id": "4",
+                "city": "Providence",
+                "state": "RI",
+                "country": "USA"
+            }]
+        //insert new record
+        $scope.insert = function () {
+        //Add the new item to the Array.
+        var record = {
+            id: $scope.records.length + 1,
+            city: $scope.city,
+            state: $scope.state,
+            country: $scope.country
+        };
+        $scope.records.push(record);
+        }
+    }]);
+</script>
