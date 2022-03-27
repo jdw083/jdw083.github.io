@@ -3,6 +3,42 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <style type="text/css">
+             /*Style The Dropdown Button*/
+            .dropbtn {
+                background-color: maroon;
+                text-align: center;
+                color: ghostwhite;
+                padding: 0px;
+                font-size: 30px;
+                border: none;
+                cursor: pointer;
+                font-family: 'Times New Roman';
+            }
+            /* Dropdown Content (Hidden by Default) */
+            .drop-content {
+                display: none;
+                position: absolute;
+                background-color: maroon;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                color: ghostwhite;
+                font-size: 25px;
+            }
+                /* Change color of dropdown links on hover */
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1
+                }
+            /* Show the dropdown menu on hover */
+            .dropdown:hover .drop-content {
+                display: block;
+                border-radius: 5px;
+                border: 3px solid lightslategrey;
+            }
+            /* Change the background color of the dropdown button when the dropdown content is shown */
+            .dropdown:hover .dropbtn {
+                background-color: inherit;
+                text-decoration: underline;
+            }
             #banner {
                 background-color: maroon;
                 text-align: center;
@@ -64,7 +100,14 @@
                         <td><a href="#">HTML/CSS</a></td>
                         <td><a href="#">Node js</a></td>
                         <td><a href="#">JSON</a></td>
-                        <td><a href="./PHP/demo.php">PHP</a></td>
+                        <td><div class="dropdown">
+                                <button class="dropbtn">PHP</button>
+                                <div class="drop-content">
+                                    <a href="./PHP/demo.php">PHP/JSON</a>
+                                    <a href="./PHP/mysqldemo.php">PHP/MySQL</a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>
