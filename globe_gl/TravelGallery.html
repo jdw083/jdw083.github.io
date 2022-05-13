@@ -18,12 +18,50 @@
 
     //data
     const N = 6;
-    const gData = [...Array(N).keys()].map(() => ({
-      lat: (Math.random() - 0.5) * 180,
-      lng: (Math.random() - 0.5) * 360,
-      size: 32,
-      color: ['red']
-    }));
+    const gData = [
+      {   //arizona
+          "lat": "35.1983",
+          "lng": "111.6513",
+          "size": 32,
+          "color": "red"
+      },
+      {   //arkansas
+          "lat": "34.7445",
+          "lng": "92.2880",
+          "size": 32,
+          "color": "red"
+      },
+      {   //CDMX
+          "lat": "19.4326",
+          "lng": "99.1332",
+          "size": 32,
+          "color": "red"
+      },
+      {   //colorado
+          "lat": "39.0820",
+          "lng": "106.3823",
+          "size": 32,
+          "color": "red"
+      },
+      {   //north carolina
+          "lat": "35.2271",
+          "lng": "80.8431",
+          "size": 32,
+          "color": "red"
+      },
+      {   //oaxaca
+          "lat": "17.0732",
+          "lng": "96.7266",
+          "size": 32,
+          "color": "red"
+      }
+  ];
+    //const gData = [...Array(N).keys()].map(() => ({
+    //  lat: (Math.random() - 0.5) * 180,
+    //  lng: (Math.random() - 0.5) * 360,
+    //  size: 32,
+    //  color: ['red']
+    //}));
 
     Globe()
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg')
