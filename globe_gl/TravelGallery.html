@@ -17,7 +17,7 @@
     </svg>`;
 
     // Gen random data
-    const N = 30;
+    const N = 6;
     const gData = [...Array(N).keys()].map(() => ({
       lat: (Math.random() - 0.5) * 180,
       lng: (Math.random() - 0.5) * 360,
@@ -26,7 +26,7 @@
     }));
 
     Globe()
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
+      .globeImageUrl('./globe_gl/globe_layers/earth-large.jpg')
       .htmlElementsData(gData)
       .htmlElement(d => {
         const el = document.createElement('div');
