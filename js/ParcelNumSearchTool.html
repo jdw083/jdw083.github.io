@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html5>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        span {
+            font-size: 20px;
+        }
+        body {
+            text-align: center;
+        }
+        textarea {
+            text-align: center;
+            width: 300px;
+            height: 500px;
+            border-width: 0;
+            resize: none;
+            outline: none;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>&#128205; PARCEL # SEARCH TOOL! &#128205;</h1>
+    <hr>
+    <span>
+        <b>Search Text: </b><label id="search">PLAQUEMINES PORT</label> <!--js adds search criteria here-->
+    </span>
+    <br><br>
+    <textarea id="listParcel"></textarea>
+</body>
+</html5>
+
+<script type="text/javascript">
+    // JSON data URL
+    var URL = 'https://plaqueminesassessor.azurewebsites.net/api/Search?value=PLAQUEMINES%20PORT&&fieldType=1&taxyear=0'
+    // substring for search parameters
+    var params = URL.substr(URL.indexOf('?') + 1);
+
+    // get JSON data
+    $.getJSON(URL, function (data) {
+
+        // create search param collection
+        var searchCrit = new URLSearchParams(params);
+
+        //get string result of 'value' param in URL string
+        //change this to change the part of the search criteria you want to output
+        var searchVal = searchCrit.get('value');
+
+        
+        document.getElementById('search').innerHTML = searchVal;
+
+        var i;
+
+        $('#listParcel').append('----Parcel Number List----\n');
+
+        for (i = 0; i < data.length; ++i) {
+
+            $('#listParcel').append((i + 1) + ': ' + data[i].parcelNumber);
+
+            $('#listParcel').append('\n');
+
+            //alert(JSON.stringify(data[i].parcelNumber));
+        }       
+    });  
+</script>
