@@ -13,9 +13,6 @@
                 border: none;
                 cursor: pointer;
                 font-family: 'Times New Roman';
-                display: flex;
-                justify-content: center;
-                align-items: center;
             }
             /* Dropdown Content (Hidden by Default) */
             .drop-content {
@@ -34,9 +31,11 @@
                 }
             /* Show the dropdown menu on hover */
             .dropdown:hover .drop-content {
-                display: block;
+                display: flex;
                 border-radius: 5px;
                 border: 3px solid lightslategrey;
+                justify-content: center;
+                align-content: center;
             }
             /* Change the background color of the dropdown button when the dropdown content is shown */
             .dropdown:hover .dropbtn {
