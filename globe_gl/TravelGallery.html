@@ -1,143 +1,260 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html>
-  <head>
+<head>
     <meta charset="utf-8" />
     <title>Travel Gallery</title>
     <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
     <script src="https://js.arcgis.com/4.23/"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-      html,
-      body,
-      #viewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-        background-color: aliceblue;
-      }
-      .esri-legend {
-        background-color: rgba(255, 255, 255, 0.8);
-      }
+        html, body, #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            background-color: aliceblue;
+        }
+        .esri-legend {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .esri-view-height-xlarge .esri-popup__main-container {
+            max-height: 1200px;
+        }
+        .esri-view-width-xlarge .esri-popup__main-container {
+            width: 800px;
+        }
     </style>
 
     <script>
-      require([
-        "esri/config",
-        "esri/Map",
-        "esri/views/SceneView",
-        "esri/layers/GraphicsLayer",
-        "esri/Graphic",
-        "esri/PopupTemplate"
-      ], function (esriConfig, Map, SceneView, GraphicsLayer, Graphic, PopupTemplate) {
-        esriConfig.apiKey = "AAPK8042725bef1c451b80c4af5275541462-Ldx4N4V0482_Be6uiGQa4CjF0PeV84jZftKejkhDpoKizYjzOSQQoX04d1Uy22y";
+        require([
+            "esri/config",
+            "esri/Map",
+            "esri/views/SceneView",
+            "esri/layers/GraphicsLayer",
+            "esri/Graphic",
+            "esri/PopupTemplate"
+        ], function (esriConfig, Map, SceneView, GraphicsLayer, Graphic, PopupTemplate) {
+            esriConfig.apiKey = "AAPK8042725bef1c451b80c4af5275541462-Ldx4N4V0482_Be6uiGQa4CjF0PeV84jZftKejkhDpoKizYjzOSQQoX04d1Uy22y";
 
-        const map = new Map({
-          basemap: "arcgis-imagery",
-          ground: "world-elevation"          
-        });        
-    
-        const view = new SceneView({
-          container: "viewDiv",
-          map: map,
-          // Indicates to create a global scene
-          viewingMode: "global",
-          camera: {
-            position: [
-              -95.771556,
-              35.967243,
-              18000000
-            ],
-            heading: 0.00,
-            tilt: 0.10
-          },
-
-          constraints: {
-            altitude: {
-              min: 5000
-            }
-          },
-          qualityProfile: "high",
-          alphaCompositingEnabled: true,
-          highlightOptions: {
-            fillOpacity: 0,
-            color: "#ffffff"
-          },
-          environment: {
-            background: {
-              type: "color",
-              color: [0, 0, 0, 0]
-            },
-            atmosphere: null,
-            starsEnabled: true
-          }
-        });
-        
-        //lat, long arrays
-        var longs = [-111.651,-92.2880,-99.1332,-106.3823,-80.8431,-96.7266];
-        var lats = [35.1983,34.7445,19.4326,39.0820,35.2271,17.0732];
-        var imgs = [
-          "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80",
-          "https://images.unsplash.com/photo-1593288942460-e321b92a6cde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
-          "https://images.unsplash.com/photo-1595433708356-1c1e6581c164?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2669&q=80",
-          "https://images.unsplash.com/photo-1595433708220-3aa013e5e43f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2669&q=80",
-          "https://images.unsplash.com/photo-1595433707937-966617f9e8e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2669&q=80",
-          "https://images.unsplash.com/photo-1593627010886-d34828365da7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
-        ]
-                
-         //Add graphics layer
-
-        const graphicsLayer = new GraphicsLayer();
-         map.add(graphicsLayer);
-
-         //Add a 3D point graphic
-        
-        const markerSymbol = {
-          type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-          color: "black",
-          outline: {
-            // autocasts as new SimpleLineSymbol()
-            color: "red",
-            width: 2
-          }
-        };
-
-            for (i=0; i< longs.length; i++ ){
-                var point = {
-                  type: "point", // autocasts as new Point()
-                  longitude: longs[i],
-                  latitude: lats[i]          
-            };
-              
-              const template = new PopupTemplate({
-                title: "Image Gallery",
-                content: [{ // <- media goes in the content
-                  type: "media", // <- autocast to media
-                  mediaInfos: [{
-                    title: "<b>CATS TEST</b>",
-                    caption: "",
-                    type: "image",
-                    value: {
-                      sourceURL: imgs[i]
-                    }
-                  }]
-                }]
-              });
-        
-            const pointGraphic = new Graphic({
-              geometry: point,
-              symbol: markerSymbol,
-              popupTemplate: template
+            const map = new Map({
+                basemap: "arcgis-imagery",
+                ground: "world-elevation"
             });
 
-            graphicsLayer.add(pointGraphic);
-        }; 
-      });
-    </script>
-  </head>
+            const view = new SceneView({
+                container: "viewDiv",
+                map: map,
+                // Indicates to create a global scene
+                viewingMode: "global",
+                camera: {
+                    position: [
+                        -95.771556,
+                        35.967243,
+                        18000000
+                    ],
+                    heading: 0.00,
+                    tilt: 0.10
+                },
 
-  <body>
+                constraints: {
+                    altitude: {
+                        min: 5000
+                    }
+                },
+                qualityProfile: "high",
+                alphaCompositingEnabled: true,
+                highlightOptions: {
+                    fillOpacity: 0,
+                    color: "#ffffff"
+                },
+                environment: {
+                    background: {
+                        type: "color",
+                        color: [0, 0, 0, 0]
+                    },
+                    atmosphere: null,
+                    starsEnabled: true
+                }
+            });
+
+            var locations = [
+                { //arizona
+                    "title": "Arizona",
+                    "lat": 35.1983,
+                    "long": -111.651,
+                    "imageURL": [
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180901_134540.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180901_134924.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180901_135051.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180901_140953.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180901_141120.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180901_141226.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180902_092301.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180902_093659.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180902_095426.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180903_103805.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180903_103807.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180903_104032.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180903_104034.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arizona/20180903_110347.jpg"
+                    ]
+                },
+                { //arkansas
+                    "title": "Arkansas",
+                    "lat": 34.7445,
+                    "long": -92.2880,
+                    "imageURL": [
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arkansas/20180908_132341.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arkansas/20180908_142718.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Arkansas/20180908_142739.jpg"
+                    ]
+                },
+                { //CDMX
+                    "title": "Mexico City",
+                    "lat": 19.4326,
+                    "long": -99.1332,
+                    "imageURL": [
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/20220417_172958.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/20220419_104446.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/20220419_104939.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/20220422_101730.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/20220422_101843.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/20220422_104218.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/20220422_122900.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/20220422_125701.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/IMG_20220502_085052_087.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/IMG_20220502_085052_147.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/IMG_20220502_085052_188.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/IMG_20220502_085052_194.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/IMG_20220502_085052_199.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/IMG_20220502_085052_206.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/IMG_20220502_085052_214.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/CDMX/IMG_20220502_085052_218.jpg"
+                    ]
+                },
+                { //colorado
+                    "title": "Colorado",
+                    "lat": 39.0820,
+                    "long": -106.3823,
+                    "imageURL": [
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180708_102106.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180708_103847.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180708_105719.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180708_105820.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180708_112722.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180709_074234.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180709_111839.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180709_135854.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180709_140449.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180709_154417.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20180709_184108.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_122656.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_122728.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_122743.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_122746.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_122749.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_124420.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_124425.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_125549.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Colorado/20190816_125552.jpg"
+                    ]
+                },
+                { //NorthCarolina
+                    "title": "North Carolina",
+                    "lat": 35.2271,
+                    "long": -80.8431,
+                    "imageURL": [
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/North%20Carolina/20170612_151601.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/North%20Carolina/20170613_095333.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/North%20Carolina/20170613_095337.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/North%20Carolina/20170613_100632.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/North%20Carolina/20170613_101124.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/North%20Carolina/20170613_110843.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/North%20Carolina/20170613_122817.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/North%20Carolina/20170613_124813.jpg"
+                    ]
+                },
+                { //oaxaca
+                    "title": "Oaxaca",
+                    "lat": 17.0732,
+                    "long": -96.7266,
+                    "imageURL": [
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Oaxaca/20211219_173815.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Oaxaca/20211219_180605.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Oaxaca/20211220_193915.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Oaxaca/20211220_194606.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Oaxaca/20211220_230800.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Oaxaca/20211221_195533.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Oaxaca/20211221_195625.jpg",
+                        "https://raw.githubusercontent.com/jdw083/jdw083.github.io/main/images/Oaxaca/20211221_210933.jpg"
+                    ]
+                }
+            ]
+
+
+            //Add graphics layer
+            const graphicsLayer = new GraphicsLayer();
+            map.add(graphicsLayer);
+
+            //Add a 3D point graphic
+            const markerSymbol = {
+                type: "simple-marker",
+                color: "black",
+                outline: {
+                    color: "red",
+                    width: 2
+                }
+            };
+
+            //loop through all locations
+            for (i = 0; i < locations.length; i++) {
+                var point = {
+                    type: "point",
+                    longitude: locations[i].long,
+                    latitude: locations[i].lat
+                };
+
+                //mediaInfos section array
+                var mediaInfos = [];
+
+                //dynamically build mediaInfos section based on number of images per location
+                for (j = 0; j < locations[i].imageURL.length; j++) {
+                    mediaInfos.push({
+                        title: "",
+                        caption: "",
+                        type: "image",
+                        value: {
+                            sourceURL: locations[i].imageURL[j]
+                        }
+                    });
+                };
+                //end loop j
+
+                //popup
+                const template = new PopupTemplate({
+                    title: locations[i].title,
+                    content: [{
+                        type: "media",
+                        mediaInfos: mediaInfos
+                    }]
+                });
+
+                //location point graphic
+                const pointGraphic = new Graphic({
+                    geometry: point,
+                    symbol: markerSymbol,
+                    popupTemplate: template
+                });
+
+                graphicsLayer.add(pointGraphic);
+            };
+            //end loop i
+        });
+    </script>
+</head>
+
+<body>
     <div id="viewDiv"></div>
-  </body>
+</body>
 </html> 
