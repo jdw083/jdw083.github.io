@@ -77,6 +77,14 @@
         //lat, long arrays
         var longs = [-111.651,-92.2880,-99.1332,-106.3823,-80.8431,-96.7266];
         var lats = [35.1983,34.7445,19.4326,39.0820,35.2271,17.0732];
+        var imgs = [
+          "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80",
+          "https://images.unsplash.com/photo-1593288942460-e321b92a6cde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
+          "https://images.unsplash.com/photo-1595433708356-1c1e6581c164?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2669&q=80",
+          "https://images.unsplash.com/photo-1595433708220-3aa013e5e43f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2669&q=80",
+          "https://images.unsplash.com/photo-1595433707937-966617f9e8e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2669&q=80",
+          "https://images.unsplash.com/photo-1593627010886-d34828365da7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
+        ]
                 
          //Add graphics layer
 
@@ -107,11 +115,11 @@
                 content: [{ // <- media goes in the content
                   type: "media", // <- autocast to media
                   mediaInfos: [{
-                    title: "<b>KITTEN</b>",
+                    title: "<b>CATS TEST</b>",
                     caption: "",
                     type: "image",
                     value: {
-                      sourceURL: "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80"
+                      sourceURL: imgs[i]
                     }
                   }]
                 }]
