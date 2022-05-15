@@ -14,8 +14,8 @@
         }
         textarea {
             text-align: center;
-            width: 300px;
-            height: 500px;
+            width: 800px;
+            height: 1200px;
             border-width: 0;
             resize: none;
             outline: none;
@@ -24,13 +24,13 @@
     </style>
 </head>
 <body>
-    <h1>&#128205; PARCEL # SEARCH TOOL! &#128205;</h1>
+    <h1>&#128205; PLAQUEMINES PARCEL # SEARCH TOOL! &#128205;</h1>
     <hr>
     <span>
-        <b>Search Text: </b><label id="search">PLAQUEMINES PORT</label> <!--js adds search criteria here-->
+        <b>Search Text: </b><input id="search" onblur="changeSearch(this.value);"/> <!--js adds search criteria here-->
     </span>
     <br><br>
-    <textarea id="listParcel"></textarea>
+    <textarea id="listParcel" readonly></textarea>
 </body>
 </html5>
 
@@ -39,6 +39,40 @@
     var URL = 'https://plaqueminesassessor.azurewebsites.net/api/Search?value=PLAQUEMINES%20PORT&&fieldType=1&taxyear=0'
     // substring for search parameters
     var params = URL.substr(URL.indexOf('?') + 1);
+
+    function changeSearch(txt) {
+        URL2 = 'https://plaqueminesassessor.azurewebsites.net/api/Search?value=' + txt + '&&fieldType=1&taxyear=0';
+
+        // get new JSON data
+        $.getJSON(URL2, function (data) {
+
+            var params2 = URL2.substr(URL2.indexOf('?') + 1);
+
+            // create search param collection
+            var searchCrit = new URLSearchParams(params2);
+
+            //get string result of 'value' param in URL string
+            //change this to change the part of the search criteria you want to output
+            var searchVal = searchCrit.get('value');
+
+            document.getElementById('search').value = searchVal;
+
+            var i;
+
+            $('#listParcel').empty();
+
+            $('#listParcel').append('----Parcel Number List----\n');
+
+            for (i = 0; i < data.length; ++i) {
+
+                $('#listParcel').append((i + 1) + ': ' + data[i].parcelNumber + ' ' + data[i].name);
+
+                $('#listParcel').append('\n');
+
+                //alert(JSON.stringify(data[i].parcelNumber));
+            }
+        });
+    };
 
     // get JSON data
     $.getJSON(URL, function (data) {
@@ -49,9 +83,8 @@
         //get string result of 'value' param in URL string
         //change this to change the part of the search criteria you want to output
         var searchVal = searchCrit.get('value');
-
-        
-        document.getElementById('search').innerHTML = searchVal;
+       
+        document.getElementById('search').value = searchVal;
 
         var i;
 
@@ -59,7 +92,7 @@
 
         for (i = 0; i < data.length; ++i) {
 
-            $('#listParcel').append((i + 1) + ': ' + data[i].parcelNumber);
+            $('#listParcel').append((i + 1) + ': ' + data[i].parcelNumber + ' ' + data[i].name);
 
             $('#listParcel').append('\n');
 
