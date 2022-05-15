@@ -1,38 +1,108 @@
 [
-    {
-        "lat": "",
-        "lng": "",
-        "size": 32,
-        "color": "red"
-    },
-    {
-        "lat": "",
-        "lng": "",
-        "size": 32,
-        "color": "red"
-    },
-    {
-        "lat": "",
-        "lng": "",
-        "size": 32,
-        "color": "red"
-    },
-    {
-        "lat": "",
-        "lng": "",
-        "size": 32,
-        "color": "red"
-    },
-    {
-        "lat": "",
-        "lng": "",
-        "size": 32,
-        "color": "red"
-    },
-    {
-        "lat": "",
-        "lng": "",
-        "size": 32,
-        "color": "red"
-    }
+  { //arizona
+    "lat": 35.1983,
+    "long": -111.651,
+    "imageURL": [
+      "/images/Arizona/20180901_134540.jpg",
+      "/images/Arizona/20180901_134924.jpg",
+      "/images/Arizona/20180901_135051.jpg",
+      "/images/Arizona/20180901_140953.jpg",
+      "/images/Arizona/20180901_141120.jpg",
+      "/images/Arizona/20180901_141226.jpg",
+      "/images/Arizona/20180902_092301.jpg",
+      "/images/Arizona/20180902_093659.jpg",
+      "/images/Arizona/20180902_095426.jpg",
+      "/images/Arizona/20180903_103805.jpg",
+      "/images/Arizona/20180903_103807.jpg",
+      "/images/Arizona/20180903_104032.jpg",
+      "/images/Arizona/20180903_104034.jpg",
+      "/images/Arizona/20180903_110347.jpg"
+    ]
+  },
+  { //arkansas
+    "lat": 34.7445,
+    "long": -92.2880,
+    "imageURL": [
+      "/images/Arkansas/20180908_132341.jpg",
+      "/images/Arkansas/20180908_142718.jpg",
+      "/images/Arkansas/20180908_142739.jpg"
+    ]
+  },
+  { //CDMX
+    "lat": 19.4326,
+    "long": -99.1332,
+    "imageURL": [
+      "/images/CDMX/20220417_172958.jpg",
+      "/images/CDMX/20220419_104446.jpg",
+      "/images/CDMX/20220419_104939.jpg",
+      "/images/CDMX/20220422_101730.jpg",
+      "/images/CDMX/20220422_101843.jpg",
+      "/images/CDMX/20220422_104218.jpg",
+      "/images/CDMX/20220422_122900.jpg",
+      "/images/CDMX/20220422_125701.jpg",
+      "/images/CDMX/IMG_20220502_085052_087.jpg",
+      "/images/CDMX/IMG_20220502_085052_147.jpg",
+      "/images/CDMX/IMG_20220502_085052_188.jpg",
+      "/images/CDMX/IMG_20220502_085052_194.jpg",
+      "/images/CDMX/IMG_20220502_085052_199.jpg",
+      "/images/CDMX/IMG_20220502_085052_206.jpg",
+      "/images/CDMX/IMG_20220502_085052_211.jpg",
+      "/images/CDMX/IMG_20220502_085052_214.jpg",
+      "/images/CDMX/IMG_20220502_085052_218.jpg"
+    ]
+  },
+  { //colorado
+    "lat": 39.0820,
+    "long": -106.3823,
+    "imageURL": [
+      "/images/Colorado/20180708_102106.jpg",
+      "/images/Colorado/20180708_103847.jpg",
+      "/images/Colorado/20180708_105719.jpg",
+      "/images/Colorado/20180708_105820.jpg",
+      "/images/Colorado/20180708_112722.jpg",
+      "/images/Colorado/20180709_074234.jpg",
+      "/images/Colorado/20180709_111839.jpg",
+      "/images/Colorado/20180709_135854.jpg",
+      "/images/Colorado/20180709_140449.jpg",
+      "/images/Colorado/20180709_154417.jpg",
+      "/images/Colorado/20180709_184108.jpg",
+      "/images/Colorado/20190816_122656.jpg",
+      "/images/Colorado/20190816_122728.jpg",
+      "/images/Colorado/20190816_122743.jpg",
+      "/images/Colorado/20190816_122746.jpg",
+      "/images/Colorado/20190816_122749.jpg",
+      "/images/Colorado/20190816_124420.jpg",
+      "/images/Colorado/20190816_124425.jpg",
+      "/images/Colorado/20190816_125549.jpg",
+      "/images/Colorado/20190816_125552.jpg"
+    ]
+  },
+  { //north carolina
+    "lat": 35.2271,
+    "long": -80.8431,
+    "imageURL": [
+      "/images/North Carolina/20170612_151601.jpg",
+      "/images/North Carolina/20170613_095333.jpg",
+      "/images/North Carolina/20170613_095337.jpg",
+      "/images/North Carolina/20170613_100632.jpg",
+      "/images/North Carolina/20170613_101124.jpg",
+      "/images/North Carolina/20170613_110843.jpg",
+      "/images/North Carolina/20170613_122817.jpg",
+      "/images/North Carolina/20170613_124813.jpg"
+    ]
+  },
+  { //oaxaca
+    "lat": 17.0732,
+    "long": -96.7266,
+    "imageURL": [
+      "/images/Oaxaca/20211219_173815.jpg",
+      "/images/Oaxaca/20211219_180605.jpg",
+      "/images/Oaxaca/20211220_193915.jpg",
+      "/images/Oaxaca/20211220_194606.jpg",
+      "/images/Oaxaca/20211220_230800.jpg",
+      "/images/Oaxaca/20211221_195533.jpg",
+      "/images/Oaxaca/20211221_195625.jpg",
+      "/images/Oaxaca/20211221_210933.jpg"
+    ]
+  }
 ]
