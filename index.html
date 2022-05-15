@@ -330,11 +330,11 @@
         }
         //change URL for google map iframe on button click
         $scope.search = function () {
-            $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCWosGkR3s0yC-v82Oas_EkbdLmQXkfBXY&q=' + $scope.city1 + ' ' + $scope.state1 + ' ' + $scope.country1 + '');
+            $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCWosGkR3s0yC-v82Oas_EkbdLmQXkfBXY&q=' + $scope.city1 + ' ' + $scope.state1 + ' ' + $scope.country1 + '&maptype=satellite');
         }
         //set initial URL for google map iframe
         var init = function () {
-            $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCWosGkR3s0yC-v82Oas_EkbdLmQXkfBXY&q=Dallas,TX');
+            $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCWosGkR3s0yC-v82Oas_EkbdLmQXkfBXY&q=Dallas,TX&maptype=satellite');
         }
         //on load
         init();
