@@ -1,87 +1,120 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<head>
-  <style> 
-    body { 
-      margin: 0; 
-    } 
-    canvas {
-      display: block;
-    }
-  </style>
-  <script src="//unpkg.com/globe.gl"></script>
-  <!--  <script src="../../dist/globe.gl.js"></script>-->
-</head>
-<body>
-  <div id="globeViz"></div>
 
-  <script>
-    const markerSvg = `<svg viewBox="-4 0 36 36">
-      <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
-      <circle fill="black" cx="14" cy="14" r="7"></circle>
-    </svg>`;
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Travel Gallery</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.23/"></script>
 
-    //data
-    const N = 6;
-    const gData = [
-      {   //arizona
-          "lat": 35.1983,
-          "lng": -111.6513,
-          "size": 32,
-          "color": "red"
-      },
-      {   //arkansas
-          "lat": 34.7445,
-          "lng": -92.2880,
-          "size": 32,
-          "color": "red"
-      },
-      {   //CDMX
-          "lat": 19.4326,
-          "lng": -99.1332,
-          "size": 32,
-          "color": "red"
-      },
-      {   //colorado
-          "lat": 39.0820,
-          "lng": -106.3823,
-          "size": 32,
-          "color": "red"
-      },
-      {   //north carolina
-          "lat": 35.2271,
-          "lng": -80.8431,
-          "size": 32,
-          "color": "red"
-      },
-      {   //oaxaca
-          "lat": 17.0732,
-          "lng": -96.7266,
-          "size": 32,
-          "color": "red"
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        background-color: aliceblue;
       }
-  ];
-    //const gData = [...Array(N).keys()].map(() => ({
-    //  lat: (Math.random() - 0.5) * 180,
-    //  lng: (Math.random() - 0.5) * 360,
-    //  size: 32,
-    //  color: ['red']
-    //}));
+      .esri-legend {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+    </style>
 
-    Globe()
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-      .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
-      .htmlElementsData(gData)
-      .htmlElement(d => {
-        const el = document.createElement('div');
-        el.innerHTML = markerSvg;
-        el.style.color = d.color;
-        el.style.width = `${d.size}px`;
 
-        el.style['pointer-events'] = 'auto';
-        el.style.cursor = 'pointer';
-        el.onclick = () => console.info(d);
-        return el;
-      })
-      (document.getElementById('globeViz'));
-  </script>
-</body>
+    <script>
+      require([
+        "esri/config",
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/GraphicsLayer",
+        "esri/Graphic"
+      ], function (esriConfig, Map, SceneView, GraphicsLayer, Graphic) {
+        esriConfig.apiKey = "AAPK8042725bef1c451b80c4af5275541462-Ldx4N4V0482_Be6uiGQa4CjF0PeV84jZftKejkhDpoKizYjzOSQQoX04d1Uy22y";
+
+        const map = new Map({
+          basemap: "arcgis-imagery",
+          ground: "world-elevation"          
+        });        
+    
+        const view = new SceneView({
+          container: "viewDiv",
+          map: map,
+          // Indicates to create a global scene
+          viewingMode: "global",
+          camera: {
+            position: [
+              -63.77153412,
+              20.75790715,
+              25512548.00000
+            ],
+            heading: 0.00,
+            tilt: 0.10
+          },
+
+          constraints: {
+            altitude: {
+              min: 5000
+            }
+          },
+          qualityProfile: "high",
+          alphaCompositingEnabled: true,
+          highlightOptions: {
+            fillOpacity: 0,
+            color: "#ffffff"
+          },
+          environment: {
+            background: {
+              type: "color",
+              color: [0, 0, 0, 0]
+            },
+            atmosphere: null,
+            starsEnabled: true
+          }
+        });
+        
+        //lat, long arrays
+        var longs = [-111.651,-92.2880,-99.1332,-106.3823,-80.8431,-96.7266];
+        var lats = [35.1983,34.7445,19.4326,39.0820,35.2271,17.0732];
+                
+         //Add graphics layer
+
+        const graphicsLayer = new GraphicsLayer();
+         map.add(graphicsLayer);
+
+         //Add a 3D point graphic
+        
+        const markerSymbol = {
+          type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+          color: "black",
+          outline: {
+            // autocasts as new SimpleLineSymbol()
+            color: "red",
+            width: 2
+          }
+        };
+
+            for (i=0; i< longs.length; i++ ){
+                var point = {
+                  type: "point", // autocasts as new Point()
+                  longitude: longs[i],
+                  latitude: lats[i]          
+            };
+        
+            const pointGraphic = new Graphic({
+              geometry: point,
+              symbol: markerSymbol
+            });
+
+            graphicsLayer.add(pointGraphic);
+        }; 
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html> 
