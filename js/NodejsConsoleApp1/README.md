@@ -33,7 +33,7 @@ var instructions = `
 To read from a file, please use the ```file``` command followed by the relative file path. For example: ```file test.txt```.
 
 # Shape memory and surface area calculations
-UNDER CONSTRUCTION - To read back shapes that overlap your input along with the surface area of the shapes, use the ```pair``` command followed by a pair of coordinates. For example, ```pair 4.5 7.5```. The program will ultimately return the total surface area of all shapes that overlap. See example below.
+To read back shapes that overlap your input along with the surface area of the shapes, use the ```pair``` command followed by a pair of coordinates. For example, ```pair 4.5 7.5```. The program will ultimately return the total surface area of all shapes that overlap. See example below.
 
 ![image](https://user-images.githubusercontent.com/25441533/179364080-d1336dbf-cb0e-4e97-afc3-8fa60e772137.png)
 
