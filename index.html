@@ -193,19 +193,19 @@
             <br />
             <div id="visitors">
                 <h2>Visitor's Table - JSON written by Node js and displayed by AngularJS</h2>
-                <table class="main" id="tblMain" cellspacing="0">
+                <table class="main table table-striped" id="tblMain" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Date</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Phone #</th>
-                            <th>Comment</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Phone #</th>
+                            <th scope="col">Comment</th>
                         </tr>
                     </thead>
                     <tr ng-repeat="v in visitors | orderBy : datetime">
-                        <td>{{$index + 1}}</td>
+                        <th scope="row">{{$index + 1}}</td>
                         <td>{{v.datetime}}</td>
                         <td>{{v.firstname | uppercase}}</td>
                         <td>{{v.lastname | uppercase}}</td>
@@ -237,18 +237,18 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="main" id="tblMain1" cellspacing="0">
+                <table class="main table table-striped" id="tblMain1" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Country</th>
+                            <th scope="col">#</th>
+                            <th scope="col">City</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Country</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="r in records track by $index">
-                            <td><span class="sn">{{r.id}}</span></td>
+                            <th scope="row"><span class="sn">{{r.id}}</span></td>
                             <td>{{r.city}}</td>
                             <td>{{r.state}}</td>
                             <td>{{r.country}}</td>
