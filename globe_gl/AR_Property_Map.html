@@ -1,0 +1,280 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Gorby, AR Property Web Map | ArcGIS API for JavaScript 4.24</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+      .esri-view-width-xlarge .esri-popup__main-container {
+        width: 260px !important;
+        text-align: center;
+      }
+      .esri-legend {
+        width: 200px !important;
+        text-align: center;
+      }
+      .esri-layer-list {
+        width: 250px !important;
+      }
+      .esri-legend__layer-table--size-ramp .esri-legend__layer-cell {
+        display: block !important;
+        align-content: center;
+      }
+      .esri-elevation-profile {
+        width: 250px !important;
+        height: 325px !important;
+      }
+      .esri-elevation-profile__main-container {
+        height: 100px !important;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.24/"></script>
+
+    <script>
+        require([
+                "esri/config",
+                "esri/layers/ImageryLayer",
+                "esri/layers/MapImageLayer",
+                "esri/WebScene",
+                "esri/views/SceneView",
+                "esri/layers/FeatureLayer",
+                "esri/Graphic",
+                "esri/layers/GraphicsLayer",
+                "esri/widgets/ElevationProfile",
+                "esri/widgets/LayerList",
+                "esri/widgets/Legend",
+                "esri/portal/Portal"
+            ], function (esriConfig, ImageryLayer, MapImageLayer, WebScene, SceneView, FeatureLayer, Graphic, GraphicsLayer, ElevationProfile, LayerList, Legend, Portal) {
+          
+                esriConfig.apiKey = "AAPKdd03fbbe6ee343358f9fce7cf1b7be7221zv1iGqYhOZQrz4PHqD8asvwS7M2zLwrYATPwGc6ISwhf7l5XPgj2nnN8uumIdz";
+          
+                const layer = new ImageryLayer({
+                      url: "https://gis.arkansas.gov/arcgis/rest/services/ImageServices/High_Resolution_Composite/ImageServer",
+                      format: "jpg" // server exports in either jpg or png format
+                });
+          
+                //const layer2 = new MapImageLayer({
+                //  url: "https://gis.arkansas.gov/arcgis/rest/services/ImageServices/CONTOURS_5FT_2019/MapServer",
+                //  sublayers: [
+                //    {
+                //      title: "Layers"
+                //    }
+                //  ]
+                //});
+          
+                const map = new WebScene({
+                    basemap: "arcgis-terrain", // Basemap layer service
+                    ground: "world-elevation",
+                    layers: [layer]
+                });
+          
+                const view = new SceneView({
+                    container: "viewDiv",
+                    map: map,
+                    center: [-92.117724, 36.101583], // Longitude, latitude
+                    zoom: 16,
+                    spatialReference: {
+                      wkid: 3857
+                    },
+                    qualityProfile: "high",
+                    environment: {
+                      lighting: {
+                        directShadowsEnabled: true,
+                        ambientOcclusionEnabled: true
+                      },
+                      atmosphere: {
+                        quality: "high"
+                      }
+                    }
+                });
+                                       
+                // Add a feature layer to map with built out SQL filter
+                const featureLayer = new FeatureLayer({
+                    url: "http://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+                    outFields: ["*"],
+                    definitionExpression: "COUNTYID = '065-001-09298-000' AND PARCELID = '001-09298-000'",
+                    renderer:{
+                      type: "simple",
+                        symbol: {
+                          color: "silver",
+                          type: "simple-line",
+                          style: "short-dot",
+                          width: "4px"
+                        }
+                    }
+                });
+                map.add(featureLayer);
+                       
+                const featureLayer2 = new FeatureLayer({
+                  url: "https://services3.arcgis.com/19JbpGvjSMZMkEe9/arcgis/rest/services/parentsproperty_gorby_ar/FeatureServer/0",
+                  elevationInfo: {
+                    mode: "relative-to-ground"
+                  },
+                  returnZ: false,
+                  // Set a renderer that will show the points with icon symbols
+                  renderer: {
+                    type: "simple", // autocasts as new SimpleRenderer()
+                    symbol: {
+                      type: "point-3d", // autocasts as new PointSymbol3D()
+                      symbolLayers: [
+                        {
+                          type: "icon", // autocasts as new IconSymbol3DLayer()
+                          resource: {
+                            primitive: "square"
+                          },
+                          material: {
+                            color: "red"
+                          },
+                          size: 4
+                        }
+                      ]
+                    }
+                  },
+                  outFields: ["*"],
+                  // Add labels with callouts of type line to the icons
+                  labelingInfo: [
+                    {
+                      // autocasts as new LabelClass()
+                      labelPlacement: "above-center", // When using callouts on labels, "above-center" is the only allowed position
+                      labelExpressionInfo: {
+                        expression: "$feature.cmt"
+                      },
+                      symbol: {
+                        type: "label-3d", // autocasts as new LabelSymbol3D()
+                        symbolLayers: [
+                          {
+                            type: "text", // autocasts as new TextSymbol3DLayer()
+                            material: {
+                              color: "red"
+                            },
+                            halo: {
+                              color: "black",
+                              size: 2
+                            },
+                            font: {
+                              family: "Arial Normal",
+                              weight: "bold"
+                            },
+                            size: 10
+                          }
+                        ],
+                        // Labels need a small vertical offset that will be used by the callout
+                        verticalOffset: {
+                          screenLength: 50,
+                          maxWorldLength: 2000,
+                          minWorldLength: 30
+                        },
+                        // The callout has to have a defined type (currently only line is possible)
+                        // The size, the color and the border color can be customized
+                        callout: {
+                          type: "line", // autocasts as new LineCallout3D()
+                          size: 0.5,
+                          color: "red",
+                          border: {
+                            color: "black"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                });
+                map.add(featureLayer2);
+                
+                const featureLayer3 = new FeatureLayer({
+                  url: "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Water/FeatureServer/20",
+                  outFields: ["*"],
+                  definitionExpression: "GNIS_ID = '00071033'",
+                  renderer:{
+                      value: "Cat Creek",
+                      type: "simple",
+                        symbol: {
+                          color: "#A4F4F9",
+                          type: "simple-line",
+                          style: "solid",
+                          width: "4px"
+                        }
+                    },
+                  popupTemplate: {
+                    content: "<b>Cat Creek</b>"
+                  }
+                });
+                map.add(featureLayer3);
+          
+                // Define elevationInfo and set it on the layer
+                const currentElevationInfo = {
+                  mode: "on-the-ground",
+                  offset: 0,
+                  unit: "meters"
+                };
+          
+                featureLayer3.elevationInfo = currentElevationInfo;
+                          
+                  // create the elevation profile widget
+                const elevationProfile = new ElevationProfile({
+                  view: view,
+                  // configure widget with desired profile lines
+                  profiles: [
+                    {
+                      type: "ground" // first profile line samples the ground elevation
+                    },
+                    {
+                      type: "view" // second profile samples the view and shows building profiles
+                    }
+                  ],
+                  // hide the select button
+                  // this button can be displayed when there are polylines in the
+                  // scene to select and display the elevation profile for
+                  visibleElements: {
+                    selectButton: true
+                  }
+                });
+
+                // add the widget to the view
+                view.ui.add(elevationProfile, "bottom-right");
+          
+                let layerList = new LayerList({
+                  view: view
+                });
+          
+                // Adds widget below other elements in the bottom right corner of the view
+                view.ui.add(layerList, {
+                  position: "top-right"
+                });
+          
+                const legend = new Legend({
+                  view: view,
+                  layerInfos: [
+                    {
+                      layer: featureLayer,
+                      title: "Property Line"
+                    },
+                    {
+                      layer: featureLayer2,
+                      title: "Point of Interest"
+                    },
+                    {
+                      layer: featureLayer3,
+                      title: "Cat Creek"
+                    }
+                  ]
+                });
+
+                // Add widget to the bottom right corner of the view
+                view.ui.add(legend, "bottom-left");
+      }); 
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
