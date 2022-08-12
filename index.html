@@ -59,8 +59,15 @@
             margin-left: auto !important;
           }
           .dropdown-menu.show {
-            background-color: maroon;
+            background-color: maroon;           
+          }
+          .dropdown-item {
             color: ghostwhite;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+          }
+          .dropdown-item:hover {
+            color: var(--bs-nav-link-hover-color);
+            background-color: maroon;
           }
           article {
             background-color: #47525C;
