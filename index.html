@@ -12,64 +12,76 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">            
-            header h1, header h2 {
-                text-align: center;
-            }
-            #banner {
-                background-color: maroon;
-                text-align: center;
-                color: ghostwhite;
-                height: 300px;
-                font-size: 20px;
-            }
-            main h2, main h1 {
-                text-align: center;
-            }
-            body {
-                background-color: lightslategrey;
-                color: ghostwhite;
-            }
-            a {
-                color: inherit;
-                text-decoration: none;
-            }
-                a:hover {
-                    text-decoration: underline;
-                }          
-            .navbar .navbar-collapse {
-                text-align: center;
-                justify-content: center;
-                background-color: maroon;
-            }
-            .navbar .navbar-expand-lg .navbar-light .bg-light {
-                background-color: maroon;
-                color: ghostwhite;
-            }
-            .navbar-nav .me-auto {
-                display: flex;
-            }
-            .nav-link {
-                color: ghostwhite;
-            }
-            .me-auto {
-                margin-right: auto !important;
-                margin-left: auto !important;
-            }
-            .dropdown-menu.show {
-                background-color: maroon;
-                color: ghostwhite;
-            }
-            article {
-                background-color: #47525C;
-                width: 50%;
-                margin-left: auto;
-                margin-right: auto;
-                border-radius: 10px;
-                text-align: center;
-            }
-            .dropdown {
-                font-size: 30px;
-            }
+          header h1, header h2 {
+            text-align: center;
+          }
+          #banner {
+            background-color: maroon;
+            text-align: center;
+            color: ghostwhite;
+            height: 300px;
+            font-size: 20px;
+          }
+          main h2, main h1 {
+            text-align: center;
+          }
+          main h2 {
+            font-size: 20px;
+          }
+          body {
+            background-color: lightslategrey;
+            color: ghostwhite;
+          }
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }          
+          .navbar .navbar-collapse {
+            text-align: center;
+            justify-content: center;
+            background-color: maroon;
+          }
+          .navbar .navbar-expand-lg .navbar-light .bg-light {
+            background-color: maroon;
+            color: ghostwhite;
+          }
+          .navbar-nav .me-auto {
+            display: flex;
+          }
+          .nav-link {
+            color: ghostwhite;
+          }
+          .me-auto {
+            margin-right: auto !important;
+            margin-left: auto !important;
+          }
+          .dropdown-menu.show {
+            background-color: maroon;
+            color: ghostwhite;
+          }
+          article {
+            background-color: #47525C;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 10px 10px 5px #39424a;
+          }
+          article h5 {
+            width: 95%;
+          }
+          .dropdown {
+            font-size: 30px;
+          }
+          iframe {
+            width: 90%;
+            height: 90%;
+            border-radius: 10px;
+          }
         </style>
         <title>James Windham - Portfolio Showcase</title>
     </head>
@@ -157,6 +169,7 @@
                 This is a site used to showcase my skillset and what I may be learning at the moment.<br />
                 Feel free to take a look at what I have been doing lately. Click my links above for more.
             </h2>
+            <hr>
             <article>
                 <h5>
                     5/15/2022 - Check out my 3D global view travel gallery, built with ArcGIS API for JavaScript<br />
@@ -164,18 +177,18 @@
                     the HTML/CSS/JS tab above.
                 </h5>
             </article>
+            <hr>
             <article>
                 <h5>
-                    8/2/2022 - I purchased a new drone today, a DJI Mini 2. I should be using it soon so<br /> hopefully I will have photos to update the travel gallery page
+                    8/2/2022 - I purchased a new drone today, a DJI Mini 2. I should be using it soon so<br /> hopefully I will have photos to update the travel gallery page.
                 </h5>
             </article>
+            <hr>
             <article>
                 <h5>
-                    Test flight of the DJI Mini 2 over the neighborhood
+                    Test flight of the DJI Mini 2 over the neighborhood.
                 </h5>
                 <iframe 
-                    width="560" 
-                    height="315" 
                     src="https://www.youtube.com/embed/B2fBoCK5V48?controls=0" 
                     title="YouTube video player" 
                     frameborder="0" 
@@ -191,6 +204,6 @@
 <script type="text/javascript">
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function ($scope, $http, $sce) {
-        
+        //stuff here...
     });
 </script>
