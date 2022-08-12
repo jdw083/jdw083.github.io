@@ -1,0 +1,89 @@
+<meta http-equiv='cache-control' content='no-cache'> 
+<meta http-equiv='expires' content='0'> 
+<meta http-equiv='pragma' content='no-cache'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html5>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style type="text/css">            
+            header h1, header h2 {
+                text-align: center;
+            }
+            main h2, main h1 {
+                text-align: center;
+            }
+            body {
+                background-color: lightslategrey;
+                color: ghostwhite;
+            }
+            #tblGoogle {
+                width: 20%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            iframe {
+                position: absolute;
+                width: 100%;
+            }
+        </style>
+        <title>Google Maps API</title>
+    </head>
+    <body ng-app="myApp" ng-controller="myCtrl">
+        <header>             
+        </header>                 
+        <main>           
+            <br />
+            <div id="googleMap">
+                <h2>Google Maps API - search for any location with instant AngularJS updated searches</h2>
+                <h2>Search for a location below &#128071;</h2>
+                <table id="tblGoogle">
+                    <thead>
+                        <tr>
+                            <td>Country</td>
+                            <td>State</td>
+                            <td>City</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input id="inpCountry" type="text" ng-model="country1" /></td>
+                            <td><input id="inpState" type="text" ng-model="state1" /></td>
+                            <td><input id="inpCity" type="text" ng-model="city1" /></td>
+                            <td><button ng-click="search()">SEARCH</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <iframe width="1260"
+                        id="google"
+                        height="900"
+                        style="border: 1px solid maroon; box-shadow: 1px 1px 1px #888;"
+                        loading="lazy"
+                        allowfullscreen
+                        ng-src="{{url}}">
+                </iframe>
+            </div>
+        </main>
+    </body>
+</html5>
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $sce) {      
+        //change URL for google map iframe on button click
+        $scope.search = function () {
+            $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCWosGkR3s0yC-v82Oas_EkbdLmQXkfBXY&q=' + $scope.city1 + ' ' + $scope.state1 + ' ' + $scope.country1 + '&maptype=satellite');
+        }
+        //set initial URL for google map iframe
+        var init = function () {
+            $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyCWosGkR3s0yC-v82Oas_EkbdLmQXkfBXY&q=Dallas,TX&maptype=satellite');
+        }
+        //on load
+        init();
+    });
+</script>
