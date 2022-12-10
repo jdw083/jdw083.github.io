@@ -2,7 +2,7 @@
 Intro
 -------------
 
-Python Tag Parser for Ignition SCADA
+Python Tag Parser for Ignition SCADA</br>
 Created by James Windham
 Created on Dec 9, 2022
 Personal Email: jwindham94@gmail.com
