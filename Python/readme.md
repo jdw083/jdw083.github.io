@@ -3,10 +3,10 @@ Intro
 -------------
 
 Python Tag Parser for Ignition SCADA</br>
-Created by James Windham
-Created on Dec 9, 2022
-Personal Email: jwindham94@gmail.com
-Business Email: windhamllc1@gmail.com
+Created by James Windham</br>
+Created on Dec 9, 2022</br>
+Personal Email: jwindham94@gmail.com</br>
+Business Email: windhamllc1@gmail.com</br>
 
 
 This is the readme for the pyTagParse program located in this folder.
@@ -21,9 +21,9 @@ Instructions
 
 instructions are simple. Follow the steps on the screen since there are only two.
 
-1. Choose JSON tag export file. This should be the file Ignition gives you after exporting in JSON format.
-2. Choose export location. This will be the location that the CSV conversion will be saved.
-  2.1. Choose whether you will be opening the file in MS Excel after it is completed. This will be set to YES as default.
+1. Choose JSON tag export file. This should be the file Ignition gives you after exporting in JSON format.</br>
+2. Choose export location. This will be the location that the CSV conversion will be saved.</br>
+  2.1. Choose whether you will be opening the file in MS Excel after it is completed. This will be set to YES as default.</br>
   
 -------------
 Usage
