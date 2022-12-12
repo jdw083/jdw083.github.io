@@ -21,7 +21,7 @@ Instructions
 
 instructions are simple. Follow the steps on the screen since there are only two.
 
-1. Choose JSON tag export file. This should be the file Ignition gives you after exporting in JSON format.</br>
+1. Choose JSON or XML tag export file. This should be the file Ignition gives you after exporting in JSON or XML format.</br>
 2. Choose export location. This will be the location that the CSV conversion will be saved.</br>
   2.1. Choose whether you will be opening the file in MS Excel after it is completed. This will be set to YES as default.</br>
   
@@ -29,7 +29,7 @@ instructions are simple. Follow the steps on the screen since there are only two
 Usage
 -------------
 
-This should only be used for Igntion tag export files in JSON format. Anything else will not work.
+This should only be used for Igntion tag export files in JSON or XML format. Anything else will not work.
 
 12/12/2022:
 
