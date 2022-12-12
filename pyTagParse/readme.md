@@ -13,7 +13,7 @@ This is the readme for the pyTagParse program located in this folder.
 
 ![image](https://user-images.githubusercontent.com/25441533/206825520-ecbde5b2-f7cb-4ee5-baef-ab9bcd10b5e2.png)
 
-This program was written by me to solve the problem of having no way of parsing through Ignition SCADA tag exports from the tag browser. The old solution was 1/2 day or more of copypasting and hating life after someone requests a pull of tags from the browser. This program will solve that issue.
+This program was written by me to solve the problem of having no way of parsing through Ignition SCADA PLC tag exports from the tag browser. The old solution was 1/2 day or more of copypasting and hating life after someone requests a pull of PLC tags from the SCADA browser. This program will solve that issue.
 
 -------------
 Instructions
