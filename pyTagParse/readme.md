@@ -11,7 +11,7 @@ Business Email: windhamllc1@gmail.com</br>
 
 This is the readme for the pyTagParse program located in this folder.
 
-![image](https://user-images.githubusercontent.com/25441533/206825520-ecbde5b2-f7cb-4ee5-baef-ab9bcd10b5e2.png)
+![image](https://user-images.githubusercontent.com/25441533/207164168-318d0079-1744-4878-b5ac-cf4f0a6ce68f.png)
 
 This program was written by me to solve the problem of having no way of parsing through Ignition SCADA PLC tag exports from the tag browser. The old solution was 1/2 day or more of copypasting and hating life after someone requests a pull of PLC tags from the SCADA browser. This program will solve that issue.
 
@@ -31,4 +31,6 @@ Usage
 
 This should only be used for Igntion tag export files in JSON format. Anything else will not work.
 
-I am currently working on adding in XML tag export functionality for transaction group exports.
+12/12/2022:
+
+I have added XML functionality to write out Ignition transaction groups into pipe-delimited CSV (or PSV to be exact)
